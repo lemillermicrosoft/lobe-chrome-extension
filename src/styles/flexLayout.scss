@@ -1,0 +1,12 @@
+@import './lobe2.scss';
+
+:export {
+  MIN_ROW_HEIGHT: $l2-flex-min-row-height;
+  IDEAL_ROW_HEIGHT: $l2-flex-ideal-row-height;
+  MAX_ROW_HEIGHT: $l2-flex-max-row-height;
+  MIN_ASPECT_RATIO: $l2-flex-min-aspect-ratio;
+  HEADER_HEIGHT: $l2-flex-header-height;
+  TILE_MARGIN: $l2-flex-tile-margin;
+  NO_HEADER_TOP: $l2-flex-no-header-top;
+  BORDER_WIDTH: $l2-data-item-selected-border-width * 2;
+}

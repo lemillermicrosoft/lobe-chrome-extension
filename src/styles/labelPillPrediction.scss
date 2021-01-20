@@ -1,0 +1,25 @@
+/*
+* ------------------------------------------------------------------------
+*
+*  Copyright (c) Microsoft Corporation.  All rights reserved.
+*
+* ------------------------------------------------------------------------
+*/
+
+@import './lobe2.scss';
+
+.label-pill-prediction {
+  display: flex;
+  max-width: 100%;
+}
+
+.prediction-tooltip-target {
+  pointer-events: none;
+}
+
+:export {
+  labelPillPredictionCorrectBackgroundColor: rgba(17, 102, 82, 0.6);
+  labelPillPredictionCorrectForegroundColor: $label-pill-prediction-correct-foreground-color;
+  labelPillPredictionIncorrectForegroundColor: $label-pill-prediction-incorrect-foreground-color;
+  labelPillPredictionIncorrectBackgroundColor: $label-pill-prediction-incorrect-background-color;
+}

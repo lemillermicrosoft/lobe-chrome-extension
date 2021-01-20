@@ -1,0 +1,144 @@
+/*
+* ------------------------------------------------------------------------
+*
+*  Copyright (c) Microsoft Corporation.  All rights reserved.
+*
+* ------------------------------------------------------------------------
+*/
+
+@import './lobe2.scss';
+
+.label-pill-container-v2 {
+  font-size: $label-pill-font-size;
+  border-radius: $l2-data-item-label-border-radius;
+  padding: 0 $l2-data-item-side-padding;
+  transform-origin: bottom left;
+  height: $label-pill-height;
+}
+
+.label-pill-container {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  align-content: center;
+  z-index: 4;
+  background-color: $l2-data-item-background-color;
+  -webkit-backdrop-filter: $shared-backdrop-filter;
+  backdrop-filter: $shared-backdrop-filter;
+  overflow: hidden;
+}
+
+.label-pill-container--input {
+  padding-right: $l2-data-item-side-padding - 2px;
+}
+
+.label-pill-foreground {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.label-pill__icon-container {
+  align-items: center;
+  display: flex;
+}
+
+.label-pill__input--only-emoji {
+  // to compensate for emoji right side spacing
+  // we replace the original padding with a lesser one
+  padding-right: $l2-data-item-side-padding - 6px;
+}
+
+.label-pill__label--only-emoji {
+  // to compensate for emoji right side spacing
+  // we replace the original padding with a lesser one
+  padding-right: $l2-data-item-side-padding - 4px;
+}
+
+.label-pill--empty {
+  width: 57px;
+}
+
+.label-pill__label--single-character {
+  // to compensate for single character not being centered
+  padding-right: $l2-data-item-side-padding;
+}
+
+.label-pill__input--single-character {
+  // to compensate for single character not being centered
+  padding-right: $l2-data-item-side-padding - 2px;
+}
+
+.label-pill--as-option {
+  backdrop-filter: none;
+  background: none;
+  height: $label-pill-height - $typeahead-highlight-space * 2;
+  // so the left side aligns with the left side
+  // of typeahead label
+  margin: 0 (-$typeahead-highlight-space);
+  white-space: nowrap;
+}
+
+.label-pill--highlight {
+  background-color: $label-pill-selected-background;
+}
+
+.label-pill--backdrop--filter {
+  backdrop-filter: $shared-backdrop-filter;
+}
+
+.label-pill--as-prediction {
+  padding: 0 $l2-data-item-side-padding;
+}
+
+.label-pill-content {
+  font-family: $font-medium;
+  color: $white;
+}
+
+.typeahead-input-container {
+  max-width: 100%;
+}
+
+.typeahead-input {
+  background: none;
+  border: none;
+  outline: none;
+  color: $white;
+  caret-color: $white;
+  flex-shrink: 0;
+  font-size: 150%;
+  max-width: 100%;
+  padding: 0;
+  cursor: default;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &--placeholder {
+    color: $typeahead-placeholder-text-color;
+  }
+
+  @extend .label-pill-content;
+
+  &::placeholder {
+    color: $typeahead-placeholder-text-color;
+  }
+
+  &::selection {
+    background: rgba(white, 0.3);
+  }
+
+  &:disabled::selection {
+    background: transparent;
+  }
+}
+
+:export {
+  labelPillBackgroundColor: $l2-data-item-background-color;
+  labelPillcontainerheight: $label-pill-height;
+  labelPillTotalSidePadding: $l2-data-item-side-padding * 2;
+}

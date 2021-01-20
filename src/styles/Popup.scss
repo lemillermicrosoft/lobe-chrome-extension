@@ -1,0 +1,91 @@
+@import "./lobe2.scss";
+
+* {
+  font-family: "LabGrotesque-Medium";
+}
+
+.App {
+  text-align: left;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+// .image-list {
+//   align-self: center;
+// }
+
+.example-item {
+  background: rgba(201, 201, 201, 0.25);
+  border-radius: 6px;
+  margin: 0 0 9px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 450px;
+}
+
+.example-square {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: 225px;
+  width: 225px;
+}
+.example-square img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+// .example-image {
+//   display: flex;
+//   justify-content: center;
+//   width: 220px;
+//   height: 220px;
+//   // #img & {
+//   //   max-width: 100%;
+//   //   max-height: 100%;
+//   // }
+// }
+
+.App-header {
+  background-color: $dashboard-background-color;
+  min-width: 350px;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: center;
+  font-size: calc(3px + 2vmin);
+  font-family: $font-medium;
+  color: $extra-dark-grey;
+}
+
+.App-body {
+  min-height: 100vh;
+  font-size: calc(8px + 2vmin);
+  display: flex;
+  flex-direction: column;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

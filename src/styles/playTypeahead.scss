@@ -1,0 +1,17 @@
+/*
+* ------------------------------------------------------------------------
+*
+*  Copyright (c) Microsoft Corporation.  All rights reserved.
+*
+* ------------------------------------------------------------------------
+*/
+
+.play-typeahead {
+  max-width: calc((100% - 75px) / 1.75);
+}
+
+.play-typeahead-loading-spinner {
+  height: 18px;
+  margin-left: 2px;
+  width: 18px;
+}

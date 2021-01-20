@@ -1,0 +1,18 @@
+// todo.txt
+
+- Add ability to type new label when clicking on 
+    -- THIS WORKS FOR pressing NO and clicking outside the typeahead
+    -- TODO -- Add back keydown and press support to:
+        -- start labeling like pressing no
+        -- accept labeling complete when pressing enter (like clicking outside)
+    prediction, submit/enter will POST with entered text
+- Add ability to clear label on typeahead and submit
+- Click on new label shows drop down
+    - Currently hardcoded to show TODO
+    - // TODO -- Populate stat.labels.labels using inference --- meeeeeh scre global state atm. That's a lot of plumbing I decided to cut for now.
+
+- BUGS:
+--- Click typeahead, dropdown is shown, click outside to make it disappear, thumb buttons don't return as expected
+
+- Package for the team to use!
+- Create Tech Plan (explaining what I've done, and RFC regarding using Lobe client code and not, runway for client component packages)

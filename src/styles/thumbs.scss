@@ -1,0 +1,145 @@
+/*
+ * ------------------------------------------------------------------------
+ *
+*  Copyright (c) Microsoft Corporation.  All rights reserved.
+ *
+ * ------------------------------------------------------------------------
+*/
+
+@import "./lobe2";
+
+.thumbs-container {
+  @include no-select;
+  align-items: center;
+  display: flex;
+  // position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+
+  &-disabled {
+    .thumb-button {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+  }
+}
+
+.thumbs-button-container {
+  bottom: 0;
+  display: flex;
+  position: absolute;
+  right: 100%;
+}
+
+@keyframes thumbs-button-scale-in {
+  from {
+    opacity: $thumbsButton-scale-in-opacity-start;
+    transform: $thumbsButton-scale-in-transform-start;
+  }
+  to {
+    opacity: $thumbsButton-scale-in-opacity-end;
+    transform: $thumbsButton-scale-in-transform-end;
+  }
+}
+
+.thumb-button {
+  @include no-select;
+  align-items: center;
+  background-color: $thumbsButton-background-color;
+  border-radius: $thumbsButton-border-radius;
+  border: none;
+  box-sizing: border-box;
+  color: $thumbsButton-text-color;
+  display: inline-flex;
+  font-family: $font-black;
+  font-size: $thumbsButton-font-size;
+  height: $thumbsButton-height;
+  margin-left: $thumbsButton-left-margin;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: all;
+  position: relative;
+  transition: $thumbsButton-all-transition;
+  backdrop-filter: $shared-backdrop-filter;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: $thumbsButton-clickable-transform;
+  }
+}
+
+.tryout-image-preview-container {
+  .thumb-button {
+    z-index: -1;
+  }
+}
+
+.thumb-button--green {
+  background: rgba($lobe-green, 0.92);
+  &:active {
+    background: $lobe-green-dark;
+  }
+  &:hover {
+    background: lighten($lobe-green, 4%);
+  }
+}
+
+.thumb-button--red {
+  background: rgba($lobe-red, 0.92);
+  &:active {
+    background: darken($lobe-red, 4%);
+  }
+  &:hover {
+    background: lighten($lobe-red, 4%);
+  }
+}
+
+.thumb-button-icon,
+.thumb-button-text {
+  @include no-select;
+  transition: $thumbsButton-icon-and-text-transition;
+}
+
+.thumb-button-text {
+  letter-spacing: $thumbsButton-letter-spacing;
+}
+
+.thumb-button-icon-animateIn {
+  animation: thumbs-button-scale-in 1s;
+}
+
+.thumb-button-text-animateIn {
+  animation: thumbs-button-scale-in 0.6s;
+}
+
+.thumb-content {
+  @include no-select;
+  align-items: center;
+  display: flex;
+  height: $thumbsButton-height;
+}
+
+.thumb-button--text-and-icon {
+  padding: $thumbsButton--text-and-icon-padding;
+
+  img {
+    padding-right: 5px;
+    margin-top: -1px;
+    height: 14px;
+  }
+}
+
+.thumb-button--only-text {
+  padding: $thumbsButton--only-text-padding;
+}
+
+.thumb-button--only-icon {
+  width: $thumbs-button--only-icon-width;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Close</title>
+    <g id="Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Tryout-Start" transform="translate(-1559.000000, -817.000000)" fill-rule="nonzero" stroke="#FFFFFF" stroke-width="3.5">
+            <g id="Window" transform="translate(285.000000, 153.000000)">
+                <g id="Right-Side" transform="translate(305.000000, 0.000000)">
+                    <g id="Webcam" transform="translate(60.000000, 140.000000)">
+                        <g id="General-/-Prediction-/-Thumbs" transform="translate(837.000000, 516.000000)">
+                            <g id="General-/-Prediction-/-Thumb-/-Down" transform="translate(64.000000, 0.000000)">
+                                <g id="Block" transform="translate(8.000000, 8.000000)">
+                                    <g id="Group" transform="translate(20.000000, 20.000000) rotate(-315.000000) translate(-20.000000, -20.000000) translate(10.000000, 10.000000)">
+                                        <circle id="Oval" cx="10" cy="10" r="10"></circle>
+                                        <line x1="10" y1="19.3333333" x2="10" y2="-1.0819628e-13" id="Path-4"></line>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

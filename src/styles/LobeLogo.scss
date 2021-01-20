@@ -1,0 +1,9 @@
+
+@import './lobe2.scss';
+
+.lobe-logo {
+  padding: 6px;
+  position: relative;
+  z-index: $z-index-splash;
+  will-change: transform;
+}

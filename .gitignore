@@ -1,0 +1,16 @@
+# General environment / IDE
+#
+**/build/
+**/tmp/
+**/bin/
+**/obj/
+**/dist/
+**/venv
+**/.venv*
+
+
+# MacOS
+.DS_Store
+
+# Node
+**/node_modules*

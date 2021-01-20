@@ -1,0 +1,18 @@
+/*
+* ------------------------------------------------------------------------
+*
+*  Copyright (c) Microsoft Corporation.  All rights reserved.
+*
+* ------------------------------------------------------------------------
+*/
+
+@import './lobe2.scss';
+
+.typeahead-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  max-width: 100%;
+  transform-origin: bottom left;
+}

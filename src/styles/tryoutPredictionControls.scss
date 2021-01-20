@@ -1,0 +1,31 @@
+@import "./lobe2";
+
+.tryout-prediction-controls-container {
+  position: relative;
+  // top: $tryout-prediction-controls-container-alignment;
+  // bottom: $tryout-prediction-controls-container-alignment;
+  // left: $tryout-prediction-controls-container-alignment;
+  // right: $tryout-prediction-controls-container-alignment;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  transform: scale(0.95);
+  // width: 300px;
+}
+
+.tryout-prediction-controls-container .play-typeahead {
+  pointer-events: auto;
+}
+
+.tryout-prediction-controls--disabled .play-typeahead {
+  pointer-events: none;
+}
+
+.tryout-prediction-controls-container-images .thumbs-container {
+  pointer-events: none;
+}
+
+.tryout-prediction-controls-container-webcam .thumbs-container {
+  pointer-events: auto;
+}

@@ -1,0 +1,22 @@
+    text-align: left;
+    font-size: calc(8px + 2vmin);
+    font-family: 'LabGrotesque-Medium';
+    bottom: 50px;
+    left: 50px;
+    right: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    width: 90vw;
+
+
+    text-align: left;
+    font-size: calc(8px + 2vmin);
+    font-family: 'LabGrotesque-Medium';
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+    background: rgba(201, 201, 201, 0.25);
+    border-radius: 6px;
+    padding: 6px;
