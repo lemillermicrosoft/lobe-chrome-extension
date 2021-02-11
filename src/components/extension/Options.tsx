@@ -1,26 +1,25 @@
 import React, { useCallback, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   Redirect,
+  Route,
+  Switch
 } from "react-router-dom";
-import Popup from "./Popup";
-import Content from "./Content";
 import Select from "react-select";
 import { MessageType } from "../../types";
+import Content from "./Content";
+import Popup from "./Popup";
 
 function get_projects(success: (data: any) => void) {
-  chrome.runtime.sendMessage({ message: "get_projects" }, function (response) {
+  chrome.runtime.sendMessage({ type: "GET_PROJECTS" }, function (response) {
     success(response && response.data);
   });
 }
 
 function Options() {
-  const [projects, setProjects] = useState<{ id: string; selectionLabel: string }[]>(
-    []
-  );
+  const [projects, setProjects] = useState<
+    { id: string; selectionLabel: string }[]
+  >([]);
   const [selectedProject, setSelectedProject] = useState<{
     id: string;
     selectionLabel: string;
@@ -34,7 +33,10 @@ function Options() {
       switch (message.type) {
         case "SELECTED_PROJECT":
           console.log(`got project from backend: ${JSON.stringify(message)}`);
-          setSelectedProject({ id: message.id, selectionLabel: message.selectionLabel });
+          setSelectedProject({
+            id: message.id,
+            selectionLabel: message.selectionLabel,
+          });
           break;
         default:
           break;
@@ -65,9 +67,12 @@ function Options() {
     chrome.runtime.sendMessage({
       type: "SELECT_PROJECT",
       id: selection.value,
-      selectionLabel: selection.label
+      selectionLabel: selection.label,
     });
-    setSelectedProject({ id: selection.value, selectionLabel: selection.label });
+    setSelectedProject({
+      id: selection.value,
+      selectionLabel: selection.label,
+    });
   }, []);
 
   return (
@@ -76,9 +81,20 @@ function Options() {
         <div>
           <h1>Lobe Extension - Options</h1>
 
-        <div>Project: {selectedProject?.id || "Please open Lobe."}</div>
+          <div>Project: {selectedProject?.id || "Please open Lobe."}</div>
           <div>
-            {selectedProject?.id && <Select value={{value: selectedProject?.id, label: selectedProject?.selectionLabel}} onChange={onSelectionChanged} options={projects.map(p=>{ return {value: p.id, label: p.selectionLabel}})} />}
+            {selectedProject?.id && (
+              <Select
+                value={{
+                  value: selectedProject?.id,
+                  label: selectedProject?.selectionLabel,
+                }}
+                onChange={onSelectionChanged}
+                options={projects.map((p) => {
+                  return { value: p.id, label: p.selectionLabel };
+                })}
+              />
+            )}
           </div>
         </div>
         <Switch>

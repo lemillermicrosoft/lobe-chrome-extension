@@ -11,12 +11,8 @@ import VisibilitySensor from "react-visibility-sensor";
 import "../../styles/Popup.scss";
 import { MessageType } from "../../types";
 import { LobeLogo } from "../lobe/logo/LobeLogo";
-import {
-  TryoutLabelingState
-} from "../lobe/tryoutView/tryoutCommonTypes";
-import {
-  TryoutPredictionControls
-} from "../lobe/tryoutView/tryoutPredictionControls";
+import { TryoutLabelingState } from "../lobe/tryoutView/tryoutCommonTypes";
+import { TryoutPredictionControls } from "../lobe/tryoutView/tryoutPredictionControls";
 import { useProjectLabels } from "../lobe/utils/hooks";
 
 const HamburgerMenu = () => {
@@ -41,7 +37,6 @@ function Popup() {
 
   const [projectId, setProjectId] = useState<string>(undefined);
   const [projectName, setProjectName] = useState<string>(undefined);
-
 
   const labels = useProjectLabels(projectId);
 
@@ -86,7 +81,7 @@ function Popup() {
       </header>
       <div className="App-body">
         <div>Project: {projectName || "Please open Lobe."}</div>
-        {projectId && <ImageList projectId={projectId} labels={labels}/>}
+        {projectId && <ImageList projectId={projectId} labels={labels} />}
       </div>
     </div>
   );
@@ -140,112 +135,26 @@ function FetchPredictionForImage(
 
 function local_url_to_data_url(url: any, success: (data: any) => void) {
   chrome.runtime.sendMessage(
-    { message: "convert_image_url_to_data_url", url: url },
+    { type: "CONVERT_IMAGE_URL_TO_DATA_URL", url: url },
     function (response) {
       success(response && response.data);
     }
   );
 }
 
-// val params = JSONObject()
-// val variables = JSONObject()
-// variables.put("projectId", projectId)
-// params.put(
-//     "query",
-//     "mutation LoadProject(\$projectId:ID!){loadProject(projectId:\$projectId)}"
-// )
-// params.put("variables", variables)
-
-// function addImageWithLabel(blobData: any, ) {
-//   var dataStreamsUrl = `http://localhost:38101/data/v1/project/${projectId}/datastream`;
-//   fetch(dataStreamsUrl)
-//     .then((response) => response.text())
-//     .then((data) => {
-//       let targets = "";
-//       let inputs = "";
-
-//       const dataStreams = JSON.parse(data);
-//       // alert(`Clicked!: ${dataStreams[0]}`);
-//       for (let dx = 0; dx < dataStreams.length; dx++) {
-//         let dataStream = dataStreams[dx];
-//         if (dataStream.category === "input") {
-//           inputs = dataStream.lobeId;
-//         } // if (dataStream.category === "target")
-//         else {
-//           targets = dataStream.lobeId;
-//         }
-//       }
-
-//       var dataStreamUrl = `http://localhost:38101/data/v1/project/${projectId}/datastream/`;
-//       var inputUrl = dataStreamUrl + inputs + "/item";
-
-//       // """{"isTest":false, "item":"", "type": "image","exampleId":"", "timestamp":${Instant.now()
-//       //   .toEpochMilli()}}"""
-
-//       fetch(blobData)
-//         .then((res) => res.blob())
-//         .then((blob) => {
-//           const inputItems = {
-//             isTest: false,
-//             item: "",
-//             type: "image",
-//             exampleId: "",
-//             timestamp: Date.now(),
-//           };
-//           let formData = new FormData();
-//           formData.append("items[]", JSON.stringify(inputItems));
-//           formData.append("file", blob, "image.png");
-
-//           // fetch(inputUrl, {method: 'POST'})
-//           fetch(inputUrl, {
-//             method: "POST",
-//             body: formData,
-//           })
-//             .then((response) => response.text())
-//             .then((imageResponseText) => {
-//               // var example = JSON.parse(imageResponseText)[0];
-
-//               // var targetUrl = dataStreamUrl + targets + "/item";
-
-//               // const prediction = document.getElementById(predictionId);
-//               // const targetItems = {
-//               //   isTest: false,
-//               //   item: prediction.textContent,
-//               //   type: "text",
-//               //   exampleId: example.exampleId,
-//               //   timestamp: Date.now(),
-//               // };
-//               // let targetFormData = new FormData();
-//               // targetFormData.append("items[]", JSON.stringify(targetItems));
-
-//               // fetch(targetUrl, {
-//               //   method: "POST",
-//               //   body: targetFormData,
-//               // })
-//               //   .then((response) => response.text())
-//               //   .then((imageResponseText) => {
-//                   // alert(`Image added!`);
-//                 // })
-//                 // .catch((error) => alert(`error caught: ${error}`));
-//             })
-//             .catch((error) => alert(`error caught: ${error}`));
-//         });
-//     })
-//     .catch((error) => alert(`error caught: ${error}`));
-
-//   // alert(`Clicked!: ${data}`);
-//   // post to dataset
-// }
-
-function postImage(projectId: string, base64Image: string, label: string, success: (result: any) => void)
-{
+function postImage(
+  projectId: string,
+  base64Image: string,
+  label: string,
+  success: (result: any) => void
+) {
   if (projectId === undefined) {
     alert("postImage ERROR: projectId undefined");
   }
 
   chrome.runtime.sendMessage(
     {
-      message: "post_prediction",
+      type: "POST_PREDICTION",
       projectId: projectId,
       base64Image: base64Image,
       label: label,
@@ -266,7 +175,7 @@ function getPrediction(
   }
   chrome.runtime.sendMessage(
     {
-      message: "get_prediction",
+      type: "GET_PREDICTION",
       projectId: projectId,
       base64Image: base64Image,
     },
@@ -275,11 +184,6 @@ function getPrediction(
     }
   );
 }
-
-// function loop100(action: (num: number) => void, start: number = 0, delay: number = 1000)
-// {
-//   setTimeout(() => {action(start); loop100(action, (start + 10) % 110);}, delay);
-// }
 
 const ImagePrediction: React.FunctionComponent<ImagePredictionProps> = (
   props: ImagePredictionProps
@@ -297,7 +201,6 @@ const ImagePrediction: React.FunctionComponent<ImagePredictionProps> = (
         projectId,
         imageSrc,
         (prediction: string, accuracy: number) => {
-          // console.log(`fetch callback: ${prediction} - ${accuracy}%`);
           setPrediction(prediction);
           setAccuracy(accuracy);
         }
@@ -360,19 +263,14 @@ const TryoutWrapper: React.FunctionComponent<TryoutWrapperProps> = (
     TryoutLabelingState.None
   );
 
-
   const onSubmit = useCallback(
     (label: string) => {
       if (
         labelingState === TryoutLabelingState.None ||
         labelingState === TryoutLabelingState.Labeling
       ) {
-
         // After this, UI will marked this as labeled.
-
-        // P0 -- Add to Lobe
         // P2 -- Mark as added for future opening of the UI -- P2
-
         local_url_to_data_url(imageData, function (data) {
           console.log(`onSubmit - ${imageData} - ${label}`);
           postImage(projectId, data, label, function (result) {
@@ -381,21 +279,9 @@ const TryoutWrapper: React.FunctionComponent<TryoutWrapperProps> = (
           });
         });
       }
-
-      // TODO This
-      // if (label.length) {
-      //   const upload: TryoutImageUpload = {
-      //     label,
-      //     dataUrl: image, // TODO base64
-      //     source: TryoutUploadSource.Image,
-      //   };
-      //   // onSubmitProp(upload);
-      // }
     },
     [imageData, labelingState, projectId]
   );
-
-  
 
   return (
     <div>
@@ -413,9 +299,6 @@ const TryoutWrapper: React.FunctionComponent<TryoutWrapperProps> = (
   );
 };
 
-// const ImagePrediction: React.FunctionComponent<ImagePredictionProps> = (
-//   props: ImagePredictionProps
-// ) => {
 const ImageList: React.FunctionComponent<ImageListProps> = (
   props: ImageListProps
 ) => {
@@ -435,18 +318,13 @@ const ImageList: React.FunctionComponent<ImageListProps> = (
         return (
           <div className="example-item" key={`example-item-${idx}`}>
             <div className="example-square">
-              {/* <div className="example-image"> */}
               <img id={`image-id-${idx}`} alt="" src={image} />
-              {/* </div> */}
             </div>
-
-            {/* TODO -- import tryoutPredictionControls with PlayTypeahead */}
-            <TryoutWrapper imageData={image} projectId={projectId} labels={labels}/>
-
-            {/* <div className="tryout-prediction-controls-container-images tryout-prediction-controls-container">
-            <ImagePrediction imageSrc={image} projectId={projectId} />
-            <TryoutControls imageSrc={image} />
-          </div> */}
+            <TryoutWrapper
+              imageData={image}
+              projectId={projectId}
+              labels={labels}
+            />
           </div>
         );
       }),

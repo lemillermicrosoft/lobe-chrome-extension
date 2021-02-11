@@ -342,7 +342,7 @@ function getLabels(projectId: string, success: (data: any) => void) {
   if (projectId) {
     chrome.runtime.sendMessage(
       {
-        message: "get_some_labels",
+        type: "GET_SOME_LABELS",
         projectId: projectId,
       },
       function (response) {

@@ -190,7 +190,7 @@ function getPrediction(
 ) {
   chrome.runtime.sendMessage(
     {
-      message: "get_prediction",
+      type: "GET_PREDICTION",
       projectId: projectId,
       base64Image: base64Image,
     },

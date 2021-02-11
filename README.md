@@ -5,8 +5,11 @@
 ## Features 
 
 - Project Selection
-- Image inference
+- Image Inference
 - Add to Dataset
+- Add New Label to Dataset
+
+<div style="text-align:center"><img src="https://github.com/lemillermicrosoft/lobe-chrome-extension/raw/main/misc/extension_preview.png" /></div>
 
 ## Development
 
@@ -28,7 +31,17 @@ npm run watch
 npm run build
 ```
 
-### Load in Browser
+### Load in Browser while developing
 - Go to Extensions for browser (Edge/Chrome)
+- Enabled Developer mode as required.
 - Load Unpacked
 - Select `dist` directory
+
+
+### Load in Browser 
+- Download [LobeBrowserExtension](https://github.com/lemillermicrosoft/lobe-chrome-extension/blob/main/LobeBrowserExtension.zip)
+- Unzip
+- Go to Extensions for browser (Edge/Chrome)
+- Enabled Developer mode as required.
+- Load Unpacked
+- Select unzipped `LobeBrowserExtension` directory

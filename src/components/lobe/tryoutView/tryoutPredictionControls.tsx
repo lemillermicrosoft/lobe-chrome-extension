@@ -78,7 +78,7 @@ function getPrediction(
 ) {
   chrome.runtime.sendMessage(
     {
-      message: "get_prediction",
+      type: "GET_PREDICTION",
       projectId: projectId,
       base64Image: base64Image,
     },
@@ -124,7 +124,7 @@ function FetchPredictionForImage({
 
 function local_url_to_data_url(url: any, success: (data: string) => void) {
   chrome.runtime.sendMessage(
-    { message: "convert_image_url_to_data_url", url: url },
+    { type: "CONVERT_IMAGE_URL_TO_DATA_URL", url: url },
     function (response) {
       success(response && response.data);
     }
