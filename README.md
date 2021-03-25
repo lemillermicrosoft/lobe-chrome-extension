@@ -2,6 +2,9 @@
 
 > Lobe Chrome extension that hits Lobe's local API. 
 
+### Download Lobe
+This requires version 0.9 of Lobe or higher. [Download Lobe](https://aka.ms/DownloadLobe).
+
 ## Features 
 
 - Project Selection

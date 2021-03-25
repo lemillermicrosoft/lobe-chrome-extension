@@ -121,14 +121,9 @@ function FetchPredictionForImage(
 ) {
   local_url_to_data_url(imageSrc, function (data) {
     getPrediction(projectId, data, function (data) {
-      const { outputs } = JSON.parse(data);
-      let percentage = 0;
-      for (var idx in outputs.Labels) {
-        if (outputs.Labels[idx][0] === outputs.Prediction[0]) {
-          percentage = outputs.Labels[idx][1] * 100;
-        }
-      }
-      callback(outputs.Prediction, percentage);
+      console.log(`Prediction Result: ${JSON.stringify(data)}`);
+      const results: {label: string, confidence: number}[] = JSON.parse(data);
+      callback(results[0].label, results[0].confidence);
     });
   });
 }

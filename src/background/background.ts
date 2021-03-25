@@ -223,11 +223,9 @@ function GetPrediction(message: GetPredictionRequest, sendResponse: (response?: 
     predictionCache.set(
       base64Image,
       new Promise<string>(function (resolve, reject) {
-        console.log(`Fetching prediction`);
+        console.log(`GetPrediction: Fetching prediction`);
         var data = JSON.stringify({
-          inputs: {
-            Image: base64Image?.split("base64,")[1],
-          },
+          image: base64Image?.split("base64,")[1],
         });
 
         var xhr = new XMLHttpRequest();
@@ -238,13 +236,18 @@ function GetPrediction(message: GetPredictionRequest, sendResponse: (response?: 
           }
         });
 
-        xhr.open("POST", `http://localhost:38100/predict/${projectId}`);
+        xhr.open("POST", `http://localhost:38101/v1/predict/${projectId}`);
+        xhr.setRequestHeader("Content-Type", "application/json");
 
         xhr.send(data);
       }).then((data) => {
+        console.log(`GetPrediction: Fetch results: ${data}`);
         // Preidiction request complete
         sendResponse({ data });
         return data;
+      }).catch((error) => {
+        console.log(`GetPrediction: Fetch error: ${error}`);
+        return undefined;
       })
     );
   }

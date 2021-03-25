@@ -48,7 +48,7 @@ interface InferenceApiHookResult {
 
 interface Prediction {
   label: string | number;
-  accuracy: number;
+  confidence: number;
 }
 
 export interface TryoutPredictionProps {
@@ -251,25 +251,7 @@ function useInferenceApi(
           fetch.response
         )} - ${typeof fetch.response}`
       );
-      const { Labels: labels } = fetch.response.outputs;
-      try {
-        predictions = labels
-          .map((resultTuple) => {
-            const prediction: Prediction = {
-              label: resultTuple[0],
-              accuracy: resultTuple[1],
-            };
-            return prediction;
-          })
-          .sort((a, b) => {
-            return b.accuracy - a.accuracy;
-          });
-      } catch (err) {
-        console.warn(
-          `useInferenceApi(): API returned unexpected predictions format`,
-          fetch.response
-        );
-      }
+      const {predictions} = fetch.response;      
       setPredictions(predictions);
     } else if (fetch.error) {
       console.error(
@@ -327,7 +309,7 @@ const TryoutPredictionControls: FunctionComponent<TryoutPredictionProps> = ({
         predictionType = predictionTypeForLabelingState[labelingState];
       } else {
         label = hasPrediction ? predictions[0].label.toString() : label;
-        accuracy = hasPrediction ? predictions[0].accuracy : 0;
+        accuracy = hasPrediction ? predictions[0].confidence : 0;
         predictionType = hasPrediction
           ? DataItemLabelPredictionType.Correct //predictionTypeForLabelingState[labelingState]
           : predictionType;
